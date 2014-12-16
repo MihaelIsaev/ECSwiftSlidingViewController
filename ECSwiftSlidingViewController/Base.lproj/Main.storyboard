@@ -56,7 +56,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="7OA-2a-v18" kind="custom" customClass="ECSlidingSegue" id="A7p-Jf-kf8"/>
+                                            <segue destination="7OA-2a-v18" kind="custom" customClass="ECSlidingSegue" customModule="ECSwiftSlidingViewController" id="A7p-Jf-kf8"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="sdW-AD-pVU" style="IBUITableViewCellStyleDefault" id="yKB-iS-yqJ">
@@ -73,7 +73,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="kwb-1z-ThO" kind="custom" customClass="ECSlidingSegue" id="XMT-eo-ZfU"/>
+                                            <segue destination="kwb-1z-ThO" kind="custom" customClass="ECSlidingSegue" customModule="ECSwiftSlidingViewController" id="XMT-eo-ZfU"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="ghh-pc-3Co" style="IBUITableViewCellStyleDefault" id="QMS-oi-zyB">
@@ -90,7 +90,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="g1l-4X-r9S" kind="custom" customClass="ECSlidingSegue" id="O7B-ig-Na1"/>
+                                            <segue destination="g1l-4X-r9S" kind="custom" customClass="ECSlidingSegue" customModule="ECSwiftSlidingViewController" id="O7B-ig-Na1"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>

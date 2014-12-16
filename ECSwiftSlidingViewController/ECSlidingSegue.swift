@@ -27,7 +27,7 @@ class ECSlidingSegue: UIStoryboardSegue {
     var skipSettingTopViewController = false
     
     override func perform() {
-        var slidingViewController = self.sourceViewController.slidingViewController()
+        let slidingViewController = self.sourceViewController.slidingViewController()
         
         if self.isUnwinding {
             if object_getClass(slidingViewController.underLeftViewController) === object_getClass(self.destinationViewController) {
@@ -37,7 +37,9 @@ class ECSlidingSegue: UIStoryboardSegue {
             }
         } else {
             if !self.skipSettingTopViewController {
-                slidingViewController.topViewController = self.destinationViewController as? UIViewController
+                if let dest = self.destinationViewController as? UIViewController {
+                    slidingViewController.setTopViewController(dest)
+                }
             }
             slidingViewController.resetTopViewAnimated(true)
         }
