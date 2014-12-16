@@ -2,8 +2,7 @@
 //  AppDelegate.swift
 //  ECSwiftSlidingViewController
 //
-//  Created by mihael on 16.12.14.
-//  Copyright (c) 2014 Mihael Isaev inc. All rights reserved.
+//  Created by Mihael Isaev on 15.12.14.
 //
 
 import UIKit

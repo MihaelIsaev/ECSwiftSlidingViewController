@@ -8,11 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		4787121B1A4048670046F73C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4787121A1A4048670046F73C /* AppDelegate.swift */; };
-		4787121D1A4048670046F73C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4787121C1A4048670046F73C /* ViewController.swift */; };
+		4787121D1A4048670046F73C /* OneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4787121C1A4048670046F73C /* OneViewController.swift */; };
 		478712201A4048670046F73C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4787121E1A4048670046F73C /* Main.storyboard */; };
 		478712221A4048670046F73C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 478712211A4048670046F73C /* Images.xcassets */; };
 		478712251A4048670046F73C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478712231A4048670046F73C /* LaunchScreen.xib */; };
 		478712311A4048670046F73C /* ECSwiftSlidingViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478712301A4048670046F73C /* ECSwiftSlidingViewControllerTests.swift */; };
+		478712401A40487B0046F73C /* ECPercentDrivenInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4787123A1A40487B0046F73C /* ECPercentDrivenInteractiveTransition.swift */; };
+		478712411A40487B0046F73C /* ECSlidingAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4787123B1A40487B0046F73C /* ECSlidingAnimationController.swift */; };
+		478712421A40487B0046F73C /* ECSlidingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4787123C1A40487B0046F73C /* ECSlidingConstants.swift */; };
+		478712431A40487B0046F73C /* ECSlidingInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4787123D1A40487B0046F73C /* ECSlidingInteractiveTransition.swift */; };
+		478712441A40487B0046F73C /* ECSlidingSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4787123E1A40487B0046F73C /* ECSlidingSegue.swift */; };
+		478712451A40487B0046F73C /* ECSlidingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4787123F1A40487B0046F73C /* ECSlidingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +35,19 @@
 		478712151A4048670046F73C /* ECSwiftSlidingViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ECSwiftSlidingViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		478712191A4048670046F73C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4787121A1A4048670046F73C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4787121C1A4048670046F73C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4787121C1A4048670046F73C /* OneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneViewController.swift; sourceTree = "<group>"; };
 		4787121F1A4048670046F73C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		478712211A4048670046F73C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		478712241A4048670046F73C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		4787122A1A4048670046F73C /* ECSwiftSlidingViewControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ECSwiftSlidingViewControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4787122F1A4048670046F73C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		478712301A4048670046F73C /* ECSwiftSlidingViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECSwiftSlidingViewControllerTests.swift; sourceTree = "<group>"; };
+		4787123A1A40487B0046F73C /* ECPercentDrivenInteractiveTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECPercentDrivenInteractiveTransition.swift; sourceTree = "<group>"; };
+		4787123B1A40487B0046F73C /* ECSlidingAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECSlidingAnimationController.swift; sourceTree = "<group>"; };
+		4787123C1A40487B0046F73C /* ECSlidingConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECSlidingConstants.swift; sourceTree = "<group>"; };
+		4787123D1A40487B0046F73C /* ECSlidingInteractiveTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECSlidingInteractiveTransition.swift; sourceTree = "<group>"; };
+		4787123E1A40487B0046F73C /* ECSlidingSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECSlidingSegue.swift; sourceTree = "<group>"; };
+		4787123F1A40487B0046F73C /* ECSlidingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECSlidingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +90,13 @@
 			isa = PBXGroup;
 			children = (
 				4787121A1A4048670046F73C /* AppDelegate.swift */,
-				4787121C1A4048670046F73C /* ViewController.swift */,
+				4787121C1A4048670046F73C /* OneViewController.swift */,
+				4787123A1A40487B0046F73C /* ECPercentDrivenInteractiveTransition.swift */,
+				4787123B1A40487B0046F73C /* ECSlidingAnimationController.swift */,
+				4787123C1A40487B0046F73C /* ECSlidingConstants.swift */,
+				4787123D1A40487B0046F73C /* ECSlidingInteractiveTransition.swift */,
+				4787123E1A40487B0046F73C /* ECSlidingSegue.swift */,
+				4787123F1A40487B0046F73C /* ECSlidingViewController.swift */,
 				4787121E1A4048670046F73C /* Main.storyboard */,
 				478712211A4048670046F73C /* Images.xcassets */,
 				478712231A4048670046F73C /* LaunchScreen.xib */,
@@ -212,8 +230,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4787121D1A4048670046F73C /* ViewController.swift in Sources */,
+				478712431A40487B0046F73C /* ECSlidingInteractiveTransition.swift in Sources */,
+				478712451A40487B0046F73C /* ECSlidingViewController.swift in Sources */,
+				4787121D1A4048670046F73C /* OneViewController.swift in Sources */,
+				478712441A40487B0046F73C /* ECSlidingSegue.swift in Sources */,
 				4787121B1A4048670046F73C /* AppDelegate.swift in Sources */,
+				478712401A40487B0046F73C /* ECPercentDrivenInteractiveTransition.swift in Sources */,
+				478712411A40487B0046F73C /* ECSlidingAnimationController.swift in Sources */,
+				478712421A40487B0046F73C /* ECSlidingConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
