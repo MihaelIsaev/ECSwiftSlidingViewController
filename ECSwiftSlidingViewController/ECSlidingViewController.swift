@@ -72,7 +72,7 @@ class ECSlidingViewController: UIViewController, UIViewControllerContextTransiti
         }()
     
     lazy var resetTapGesture: UITapGestureRecognizer = {
-        return UITapGestureRecognizer(target: self, action: "resetTopViewAnimated:")
+        return UITapGestureRecognizer(target: self, action: "resetTopViewAnimatedRecognizer:")
         }()
    
     var delegate: ECSlidingViewControllerDelegate?
@@ -730,6 +730,13 @@ class ECSlidingViewController: UIViewController, UIViewControllerContextTransiti
         
         self.defaultInteractiveTransition.updateTopViewHorizontalCenterWithRecognizer(recognizer)
         self.interactive = false
+    }
+    
+    
+    //MARK: - UITapGestureRecognizer action
+    
+    func resetTopViewAnimatedRecognizer( recognizer: UITapGestureRecognizer) {
+        self.resetTopViewAnimated(true, onComplete: nil)
     }
     
     //MARK: - UIViewControllerTransitionCoordinatorContext
