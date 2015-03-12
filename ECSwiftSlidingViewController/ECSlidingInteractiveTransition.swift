@@ -71,24 +71,7 @@ class ECSlidingInteractiveTransition: ECPercentDrivenInteractiveTransition {
             }
             self.updateInteractiveTransition(percentComplete)
             break;
-        case UIGestureRecognizerState.Ended:
-            let isPanningRight = velocityX > 0
-            
-            if let coordinatorInteractionEnded = self.coordinatorInteractionEnded {
-                coordinatorInteractionEnded(context: self.slidingViewController)
-            }
-            
-            if isPanningRight && self.positiveLeftToRight {
-                self.finishInteractiveTransition()
-            } else if isPanningRight && !self.positiveLeftToRight {
-                self.cancelInteractiveTransition()
-            } else if !isPanningRight && self.positiveLeftToRight {
-                self.cancelInteractiveTransition()
-            } else if !isPanningRight && !self.positiveLeftToRight {
-                self.finishInteractiveTransition()
-            }
-            break;
-        case UIGestureRecognizerState.Cancelled:
+        case UIGestureRecognizerState.Ended, UIGestureRecognizerState.Cancelled:
             let isPanningRight = velocityX > 0
             
             if let coordinatorInteractionEnded = self.coordinatorInteractionEnded {
