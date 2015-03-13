@@ -20,10 +20,18 @@ protocol ECSlidingViewControllerDelegate {
     func slidingViewController(slidingViewController:ECSlidingViewController, layoutControllerForTopViewPosition topViewPosition:ECSlidingViewControllerTopViewPosition) -> ECSlidingViewControllerLayout
 }
 
+protocol ECSlidingViewControllerDelegate2 {
+    func slidingViewControllerDidAppear(slidingViewController:ECSlidingViewController)
+    func slidingViewControllerDidDisappear(slidingViewController:ECSlidingViewController)
+}
+
 var _ECSlidingViewControllerSharedInstance: ECSlidingViewController?
 
 class ECSlidingViewController: UIViewController, UIViewControllerContextTransitioning, UIViewControllerTransitionCoordinator, UIViewControllerTransitionCoordinatorContext {
    
+    //Enable or disable the Pan gesture, without removing it
+    var panGestureEnable = true
+    
    var anchorLeftPeekAmount: CGFloat = 44
     /*lazy var anchorLeftPeekAmount: CGFloat = {
         if self.anchorLeftPeekAmount == CGFloat.max && self.anchorLeftRevealAmount != CGFloat.max {
@@ -76,6 +84,7 @@ class ECSlidingViewController: UIViewController, UIViewControllerContextTransiti
         }()
    
     var delegate: ECSlidingViewControllerDelegate?
+    var delegate2: ECSlidingViewControllerDelegate2?
    
     var topViewController: UIViewController?
     var underLeftViewController: UIViewController?
@@ -174,6 +183,9 @@ class ECSlidingViewController: UIViewController, UIViewControllerContextTransiti
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        anchorRightRevealAmount = self.view.frame.width - 55
+        
         if let topVC = self.topViewController {
             topVC.view.frame = self.topViewCalculatedFrameForPosition(self.currentTopViewPosition)
             println("topVC.view.frame \(topVC.view.frame)")
@@ -443,25 +455,19 @@ class ECSlidingViewController: UIViewController, UIViewControllerContextTransiti
         if !CGRectIsInfinite(frameFromDelegate){
             return frameFromDelegate
         }
-      
-      var containerViewFrame = self.view.bounds
-      
-      if (!((self.underLeftViewController!.edgesForExtendedLayout & UIRectEdge.Top) == UIRectEdge.Top)) {
-         var topLayoutGuideLength = self.topLayoutGuide.length
-         containerViewFrame.origin.y = topLayoutGuideLength
-         containerViewFrame.size.height -= topLayoutGuideLength
-      }
-      
-      if (!((self.underLeftViewController!.edgesForExtendedLayout & UIRectEdge.Bottom) == UIRectEdge.Bottom)) {
-         var bottomLayoutGuideLength = self.bottomLayoutGuide.length
-         containerViewFrame.size.height -= bottomLayoutGuideLength
-      }
-      
-      if (!((self.underLeftViewController!.edgesForExtendedLayout & UIRectEdge.Right) == UIRectEdge.Right)) {
-         containerViewFrame.size.width = self.anchorRightRevealAmount
-      }
-      
-      return containerViewFrame
+        
+        var containerViewFrame = self.view.bounds
+        
+        var topLayoutGuideLength = self.topLayoutGuide.length
+        containerViewFrame.origin.y = topLayoutGuideLength
+        containerViewFrame.size.height -= topLayoutGuideLength
+        
+        var bottomLayoutGuideLength = self.bottomLayoutGuide.length
+        containerViewFrame.size.height -= bottomLayoutGuideLength
+        
+        containerViewFrame.size.width = self.anchorRightRevealAmount
+        
+        return containerViewFrame
     }
    
     func underRightViewCalculatedFrameForTopViewPosition(position: ECSlidingViewControllerTopViewPosition) -> CGRect {
@@ -473,21 +479,16 @@ class ECSlidingViewController: UIViewController, UIViewControllerContextTransiti
       var containerViewFrame = self.view.bounds
       
       if let underRightViewController = self.underRightViewController {
-         if (!((underRightViewController.edgesForExtendedLayout & UIRectEdge.Top) == UIRectEdge.Top)) {
-            var topLayoutGuideLength = self.topLayoutGuide.length
-            containerViewFrame.origin.y = topLayoutGuideLength
-            containerViewFrame.size.height -= topLayoutGuideLength
-         }
-         
-         if (!((underRightViewController.edgesForExtendedLayout & UIRectEdge.Bottom) == UIRectEdge.Bottom)) {
-            var bottomLayoutGuideLength = self.bottomLayoutGuide.length
-            containerViewFrame.size.height -= bottomLayoutGuideLength
-         }
-         
-         if (!((underRightViewController.edgesForExtendedLayout & UIRectEdge.Left) == UIRectEdge.Left)) {
-            containerViewFrame.origin.x   = self.anchorLeftPeekAmount
-            containerViewFrame.size.width = self.anchorLeftRevealAmount
-         }
+        var topLayoutGuideLength = self.topLayoutGuide.length
+        containerViewFrame.origin.y = topLayoutGuideLength
+        containerViewFrame.size.height -= topLayoutGuideLength
+        
+        var bottomLayoutGuideLength = self.bottomLayoutGuide.length
+        containerViewFrame.size.height -= bottomLayoutGuideLength
+        
+        containerViewFrame.origin.x   = self.anchorLeftPeekAmount
+        containerViewFrame.size.width = self.anchorLeftRevealAmount
+        
       }
       
       return containerViewFrame
@@ -611,6 +612,12 @@ class ECSlidingViewController: UIViewController, UIViewControllerContextTransiti
         } else {
             viewControllerWillDisappear.endAppearanceTransition()
             viewControllerWillAppear.endAppearanceTransition()
+            
+            if operation == .AnchorLeft || operation == .AnchorRight {
+                self.delegate2?.slidingViewControllerDidAppear(self)
+            }else if operation == .ResetFromLeft || operation == .ResetFromRight {
+                self.delegate2?.slidingViewControllerDidDisappear(self)
+            }
         }
     }
     
@@ -623,6 +630,7 @@ class ECSlidingViewController: UIViewController, UIViewControllerContextTransiti
             }
         } else if operation == .AnchorRight {
             if let underLeftViewController = self.underLeftViewController {
+                //Call when leftViewController will appear & when it appears
                 viewControllerWillAppear = underLeftViewController
             }
         }
@@ -723,13 +731,15 @@ class ECSlidingViewController: UIViewController, UIViewControllerContextTransiti
     //MARK: - UIPanGestureRecognizer action
     
     func detectPanGestureRecognizer(recognizer: UIPanGestureRecognizer) {
-        if recognizer.state == .Began {
-            self.view.endEditing(true)
-            self.interactive = true
+        if panGestureEnable {
+            if recognizer.state == .Began {
+                self.view.endEditing(true)
+                self.interactive = true
+            }
+            
+            self.defaultInteractiveTransition.updateTopViewHorizontalCenterWithRecognizer(recognizer)
+            self.interactive = false
         }
-        
-        self.defaultInteractiveTransition.updateTopViewHorizontalCenterWithRecognizer(recognizer)
-        self.interactive = false
     }
     
     
